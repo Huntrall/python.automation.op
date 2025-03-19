@@ -122,7 +122,7 @@ pasta = r"\\192.168.100.245\\Setores\\TI\\automacaoop"
 
 arquivos = os.listdir(pasta)
 
-diretorioarquivo = pyau.locateOnScreen("diretorioarquivo.png", confidence=0.8)
+diretorioarquivo = pyau.locateOnScreen("images\\diretorioarquivo.png", confidence=0.8)
 pyau.click(diretorioarquivo)
 
 pyau.write("H:\TI\AUTOMACAOOP\ ")
