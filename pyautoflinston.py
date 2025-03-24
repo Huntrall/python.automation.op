@@ -10,7 +10,7 @@ pyau.write("react")
 time.sleep(1)
 
 pyau.press("enter")
-time.sleep(2)
+time.sleep(4)
 
 email = pyau.locateOnScreen("images\\email.png", confidence=0.8)
 pyau.click(email)
@@ -43,11 +43,11 @@ try:
     abrircomputador = pyau.locateOnScreen("images\\abrircomputador.png", confidence=0.8)
     pyau.click(abrircomputador)
 except pyau.ImageNotFoundException:
-    print("Erro: 'images\\brircomputador.png' não encontrada.")
+    print("Erro: 'images\\abrircomputador.png' não encontrada.")
 
 time.sleep(25)
 
-abrirsarwin = pyau.locateOnScreen("images\\arwin.png", confidence=0.8)
+abrirsarwin = pyau.locateOnScreen("images\\sarwin.png", confidence=0.8)
 pyau.click(abrirsarwin, clicks=2)
 
 time.sleep(2)
@@ -82,47 +82,64 @@ time.sleep(1)
 clicaplanilha = pyau.locateOnScreen("images\\planilha.png", confidence=0.8)
 pyau.click(clicaplanilha)
 
-clicaabrirarquivo = pyau.locateOnScreen("images\\abrirarquivo.png", confidence=0.8)
-pyau.click(clicaabrirarquivo)
-
 time.sleep(2)
-
-clicaestecomputador = pyau.locateOnScreen("images\\estecomputador.png", confidence=0.8)
-pyau.click(clicaestecomputador)
-
-time.sleep(1)
-
-screen_width, screen_height = pyau.size()
-
-center_x = screen_width // 2
-center_y = screen_height // 2
-
-pyau.moveTo(center_x, center_y)
-
-pyau.scroll(-500)
-
-time.sleep(2)
-
-clicasetores = pyau.locateOnScreen("images\\setores.png", confidence=0.8)
-pyau.click(clicasetores, clicks=2)
-
-time.sleep(0.5)
-
-clicati = pyau.locateOnScreen("images\\TI.png", confidence=0.8)
-pyau.click(clicati, clicks=2)
-
-time.sleep(0.5)
-
-clicaautoop = pyau.locateOnScreen("images\\autoop.png", confidence=0.8)
-pyau.click(clicaautoop, clicks=2)
 
 pasta = r"\\192.168.100.245\\Setores\\TI\\automacaoop"
 
 arquivos = os.listdir(pasta)
 
-diretorioarquivo = pyau.locateOnScreen("images\\diretorioarquivo.png", confidence=0.8)
-pyau.click(diretorioarquivo)
 
-pyau.write("H:\TI\AUTOMACAOOP\ ")
-pyau.press("backspace")
-pyau.write(arquivos[0])
+for arquivo in arquivos:
+    caminho_completo = os.path.join(pasta, arquivo)
+
+    if os.path.isfile(caminho_completo):
+        print(f"processando: {arquivo}")
+        diretorioarquivo = pyau.locateOnScreen("images\\diretorioarquivo.png", confidence=0.8)
+        pyau.click(diretorioarquivo)
+
+        pyau.write("H:\TI\AUTOMACAOOP\ ")
+        pyau.press("backspace")
+        pyau.write(arquivo)
+
+        time.sleep(6)
+        
+        confirma = pyau.locateOnScreen("images\\confirma.png", confidence=0.8)
+        pyau.click(confirma)
+
+        time.sleep(4)
+
+        okprocesso = pyau.locateOnScreen("images\\okprocesso.png", confidence=0.8)
+        pyau.click(okprocesso)
+
+        time.sleep(2)
+
+        pyau.press("tab", presses=4)
+        pyau.press("backspace")
+
+        time.sleep(4)
+
+sairprocesso = pyau.locateOnScreen("images\\sairprocesso.png", confidence=0.8)
+pyau.click(sairprocesso)
+
+time.sleep(2)
+
+cadastro = pyau.locateOnScreen("images\\cadastro.png", confidence=0.8)
+pyau.click(cadastro)
+
+time.sleep(2)
+
+despesacadastro = pyau.locateOnScreen("images\\despesacadastro.png", confidence=0.8)
+pyau.click(despesacadastro)
+
+time.sleep(2)
+
+departamento = pyau.locateOnScreen("images\\departamento.png", confidence=0.8)
+pyau.click(departamento)
+
+time.sleep(1)
+
+pyau.write("26")
+
+time.sleep(1)
+
+pyau.press("enter")
