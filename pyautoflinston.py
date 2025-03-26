@@ -137,12 +137,12 @@ for arquivo in arquivos:
         confirma = pyau.locateOnScreen("images\\confirma.png", confidence=0.8)
         pyau.click(confirma)
 
-        time.sleep(4)
+        time.sleep(6)
 
         okprocesso = pyau.locateOnScreen("images\\okprocesso.png", confidence=0.8)
         pyau.click(okprocesso)
 
-        time.sleep(2)
+        time.sleep(4)
 
         pyau.press("tab", presses=4)
         pyau.press("backspace")
