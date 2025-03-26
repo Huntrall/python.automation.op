@@ -3,6 +3,30 @@ import time
 import cv2
 import os
 
+funcao_escolhida = None
+
+opcoesempresas = {"1", "2", "3"}
+
+
+while True:
+    print("\nEscolha a empresa que irá fazer a operação:")
+    print("1 - emp")
+    print("2 - serv")    
+    print("3 - vig")
+
+    escolha = input("Digite o número da opção: ")  
+    
+    if escolha in opcoesempresas:
+        funcao_escolhida = escolha
+        break  
+    else:
+        print("Opção inválida! Tente novamente.")
+
+emaildigita = input(str("Digite seu email: "))
+senhadigita = input("Digite a sua senha: ")
+usuariosarwin = input("Digite o usuário do sarwin: ")
+senhasarwin = input("Digite a senha do sarwin: ")
+
 pyau.press("win")
 time.sleep(1)
 
@@ -16,14 +40,14 @@ email = pyau.locateOnScreen("images\\email.png", confidence=0.8)
 pyau.click(email)
 time.sleep(1)
 
-pyau.write("henrique.bento@delphostec.com.br")
+pyau.write(emaildigita)
 time.sleep(1)
 
 password = pyau.locateOnScreen("images\\password.png", confidence=0.8)
 pyau.click(password)
 time.sleep(1)
 
-pyau.write("D@r1us@123")
+pyau.write(senhadigita)
 pyau.press("enter")
 time.sleep(3)
 
@@ -52,8 +76,15 @@ pyau.click(abrirsarwin, clicks=2)
 
 time.sleep(2)
 
-abriremp = pyau.locateOnScreen("images\\emp.png", confidence=0.8)
-pyau.click(abriremp, clicks=2)
+if funcao_escolhida == "1":
+    abriremp = pyau.locateOnScreen("images\\emp.png", confidence=0.8)
+    pyau.click(abriremp, clicks=2)
+elif funcao_escolhida == "2":
+    abrirserv = pyau.locateOnScreen("images\\serv.png", confidence=0.8)
+    pyau.click(abrirserv, clicks=2)
+elif funcao_escolhida == "3":
+    abrirvig = pyau.locateOnScreen("images\\vig.png", confidence=0.8)
+    pyau.click(abrirvig, clicks=2)
 
 time.sleep(2)
 
@@ -62,9 +93,9 @@ pyau.click(abrirdespesa, clicks=2)
 
 time.sleep(4)
 
-pyau.write("erminio.nicolleti")
+pyau.write(usuariosarwin)
 pyau.press("tab")
-pyau.write("160796")
+pyau.write(senhasarwin)
 pyau.press("enter")
 
 time.sleep(7)
@@ -143,3 +174,67 @@ pyau.write("26")
 time.sleep(1)
 
 pyau.press("enter")
+
+time.sleep(2)
+
+try:
+    finaldireita = pyau.locateOnScreen("images\\finaldireita.png", confidence=0.8)
+    if finaldireita:
+        pyau.click(finaldireita)
+        for arquivo in arquivos:
+            caminho_completo = os.path.join(pasta, arquivo)
+
+            if os.path.isfile(caminho_completo):
+                print(f"processando: {arquivo}")
+
+                clicaop = pyau.locateOnScreen("images\\clicaop.png", confidence=0.8)
+                pyau.click(clicaop)
+                    
+                time.sleep(10)
+
+                clicaimpressora = pyau.locateOnScreen("images\\clicaimpressora.png", confidence=0.8)
+                pyau.click(clicaimpressora)
+
+                time.sleep(5)
+
+                pyau.write("s")
+                    
+                sigame = pyau.locateOnScreen("images\\sigame.png", confidence=0.8)
+                pyau.click(sigame)
+
+                time.sleep(5)
+
+                pyau.press("enter")
+
+                time.sleep(3)
+
+                movaesquerda = pyau.locateOnScreen("images\\movaesquerda.png", confidence=0.8)
+                pyau.click(movaesquerda)
+
+                time.sleep(3)
+except pyau.ImageNotFoundException:
+    print("Aparentemente só tem 1 op")
+
+time.sleep(2)
+
+try:
+    clicaop = pyau.locateOnScreen("images\\clicaop.png", confidence=0.8)
+    pyau.click(clicaop)
+                    
+    time.sleep(10)
+
+    clicaimpressora = pyau.locateOnScreen("images\\clicaimpressora.png", confidence=0.8)
+    pyau.click(clicaimpressora)
+
+    time.sleep(5)
+
+    pyau.write("s")
+                    
+    sigame = pyau.locateOnScreen("images\\sigame.png", confidence=0.8)
+    pyau.click(sigame)
+
+    time.sleep(5)
+
+    pyau.press("enter")
+except pyau.ImageNotFoundException:
+    print("Não tem op.")

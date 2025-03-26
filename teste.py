@@ -3,61 +3,24 @@ import time
 import cv2
 import os
 
-pasta = r"\\192.168.100.245\\Setores\\TI\\automacaoop"
+funcao_escolhida = None
 
-arquivos = os.listdir(pasta)
+opcoesempresas = {"1", "2", "3"}
 
-cadastro = pyau.locateOnScreen("images\\cadastro.png", confidence=0.8)
-pyau.click(cadastro)
 
-time.sleep(2)
+while True:
+    print("\nEscolha a empresa que irá fazer a operação:")
+    print("1 - emp")
+    print("2 - serv")    
+    print("3 - vig")
 
-despesacadastro = pyau.locateOnScreen("images\\despesacadastro.png", confidence=0.8)
-pyau.click(despesacadastro)
+    escolha = input("Digite o número da opção: ")  
+    
+    if escolha in opcoesempresas:
+        funcao_escolhida = escolha
+        break  
+    else:
+        print("Opção inválida! Tente novamente.")
 
-time.sleep(2)
-
-departamento = pyau.locateOnScreen("images\\departamento.png", confidence=0.8)
-pyau.click(departamento)
-
-time.sleep(1)
-
-pyau.write("26")
-
-time.sleep(1)
-
-pyau.press("enter")
-
-time.sleep(2)
-
-finaldireita = pyau.locateOnScreen("images\\finaldireita.png", confidence=0.8)
-pyau.click(finaldireita)
-
-for arquivo in arquivos:
-    caminho_completo = os.path.join(pasta, arquivo)
-
-    if os.path.isfile(caminho_completo):
-        print(f"processando: {arquivo}")
-
-        clicaop = pyau.locateOnScreen("images\\clicaop.png", confidence=0.8)
-        pyau.click(clicaop)
-        
-        time.sleep(10)
-
-        clicaimpressora = pyau.locateOnScreen("images\\clicaimpressora.png", confidence=0.8)
-        pyau.click(clicaimpressora)
-
-        time.sleep(5)
-
-        pyau.write("ss")
-
-        time.sleep(5)
-
-        pyau.press("enter")
-
-        time.sleep(3)
-
-        movaesquerda = pyau.locateOnScreen("images\\movaesquerda.png", confidence=0.8)
-        pyau.click(movaesquerda)
-
-        time.sleep(3)
+if funcao_escolhida == "1":
+    print("dinossauro")
