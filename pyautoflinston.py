@@ -34,11 +34,17 @@ pyau.write("react")
 time.sleep(1)
 
 pyau.press("enter")
-time.sleep(4)
-
-email = pyau.locateOnScreen("images\\email.png", confidence=0.8)
-pyau.click(email)
 time.sleep(1)
+
+while True:
+    try:
+        email = pyau.locateOnScreen("images\\email.png", confidence=0.8)
+        if email:
+            pyau.click(email)
+            break
+    except Exception as e:
+        pass
+    time.sleep(1)
 
 pyau.write(emaildigita)
 time.sleep(1)
@@ -69,22 +75,34 @@ try:
 except pyau.ImageNotFoundException:
     print("Erro: 'images\\abrircomputador.png' não encontrada.")
 
-time.sleep(25)
-
-abrirsarwin = pyau.locateOnScreen("images\\sarwin.png", confidence=0.8)
-pyau.click(abrirsarwin, clicks=2)
+while True:
+    try:
+        abrirsarwin = pyau.locateOnScreen("images\\sarwin.png", confidence=0.8)
+        if abrirsarwin:
+            pyau.click(abrirsarwin, clicks=2)
+            break
+    except Exception as e:
+        pass
+    time.sleep(1)
 
 time.sleep(2)
 
-if funcao_escolhida == "1":
-    abriremp = pyau.locateOnScreen("images\\emp.png", confidence=0.8)
-    pyau.click(abriremp, clicks=2)
-elif funcao_escolhida == "2":
-    abrirserv = pyau.locateOnScreen("images\\serv.png", confidence=0.8)
-    pyau.click(abrirserv, clicks=2)
-elif funcao_escolhida == "3":
-    abrirvig = pyau.locateOnScreen("images\\vig.png", confidence=0.8)
-    pyau.click(abrirvig, clicks=2)
+while True:
+    try:
+        abriremp = pyau.locateOnScreen("images\\emp.png", confidence=0.8)
+        if funcao_escolhida == "1":
+            pyau.click(abriremp, clicks=2)
+        elif funcao_escolhida == "2":
+            abrirserv = pyau.locateOnScreen("images\\serv.png", confidence=0.8)
+            pyau.click(abrirserv, clicks=2)
+        elif funcao_escolhida == "3":
+            abrirvig = pyau.locateOnScreen("images\\vig.png", confidence=0.8)
+            pyau.click(abrirvig, clicks=2)
+        break
+    except Exception as e:
+        pass
+    time.sleep(1)
+
 
 time.sleep(2)
 
@@ -98,20 +116,27 @@ pyau.press("tab")
 pyau.write(senhasarwin)
 pyau.press("enter")
 
-time.sleep(7)
+while True:
+    try:
+        abrirprocesso = pyau.locateOnScreen("images\\processo.png", confidence=0.8)
+        if abrirprocesso:
+            pyau.click(abrirprocesso, clicks=2)
+            importadespesa = pyau.locateOnScreen("images\\importadespesa.png", confidence=0.8)
+            pyau.click(importadespesa)
+            break
+    except Exception as e:
+        pass
+    time.sleep(1)
 
-abrirprocesso = pyau.locateOnScreen("images\\processo.png", confidence=0.8)
-pyau.click(abrirprocesso, clicks=2)
-
-time.sleep(1)
-
-importadespesa = pyau.locateOnScreen("images\\importadespesa.png", confidence=0.8)
-pyau.click(importadespesa)
-
-time.sleep(1)
-
-clicaplanilha = pyau.locateOnScreen("images\\planilha.png", confidence=0.8)
-pyau.click(clicaplanilha)
+while True:
+    try:
+        clicaplanilha = pyau.locateOnScreen("images\\planilha.png", confidence=0.8)
+        if clicaplanilha:
+            pyau.click(clicaplanilha)
+            break
+    except Exception as e:
+        pass
+    time.sleep(1)
 
 time.sleep(2)
 
@@ -137,10 +162,15 @@ for arquivo in arquivos:
         confirma = pyau.locateOnScreen("images\\confirma.png", confidence=0.8)
         pyau.click(confirma)
 
-        time.sleep(6)
-
-        okprocesso = pyau.locateOnScreen("images\\okprocesso.png", confidence=0.8)
-        pyau.click(okprocesso)
+        while True:
+            try:
+                okprocesso = pyau.locateOnScreen("images\\okprocesso.png", confidence=0.8)
+                if abrirprocesso:
+                    pyau.click(okprocesso)
+                    break
+            except Exception as e:
+                pass
+            time.sleep(1)
 
         time.sleep(4)
 
